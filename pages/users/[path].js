@@ -7,7 +7,7 @@ export default function Users({ data }) {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Next App</title>
+        <title>Routing | Next App</title>
       </Head>
 
       <main className={styles.main}>

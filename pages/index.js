@@ -6,11 +6,11 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Routing | Next App </title>
+        <title>Next App </title>
       </Head>
 
       <main className={styles.main}>
-        <h1>Next.js!</h1>
+        <h1>Next.js Dynamic Routing</h1>
 
         <Link href="/users/search?name=&skip=0&limit=5">
           <button>User List</button>
