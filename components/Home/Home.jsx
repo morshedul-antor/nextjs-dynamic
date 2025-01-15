@@ -3,10 +3,11 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 
 const Home = () => {
+  const router = useRouter();
+
   const [query, setQuery] = useState("");
   const [skip, setSkip] = useState(0);
   const [limit, setLimit] = useState(5);
-  const router = useRouter();
 
   const handleInputChange = (e) => {
     const value = e.target.value;
