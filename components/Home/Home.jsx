@@ -5,46 +5,70 @@ import { useState } from "react";
 const Home = () => {
   const router = useRouter();
 
-  const [query, setQuery] = useState("");
-  const [skip, setSkip] = useState(0);
-  const [limit, setLimit] = useState(5);
+  const [query, setQuery] = useState({
+    name: "",
+    skip: 0,
+    limit: 5,
+  });
 
-  const handleInputChange = (e) => {
-    const value = e.target.value;
-    setQuery(value);
+  const handleQueryChange = (key, value) => {
+    setQuery((prev) => {
+      const query = { ...prev, [key]: value };
 
-    router.push(`/users/search?name=${value}&skip=${skip}&limit=${limit}`);
+      router.replace({
+        pathname: "/users",
+        query: query,
+      });
+
+      return query;
+    });
   };
 
-  const handleSkipChange = (e) => {
-    const value = e.target.value;
-    setSkip(value);
+  // const handleInputChange = (e) => {
+  //   setQuery({ ...query, name: e.target.value });
 
-    router.push(`/users/search?name=${query}&skip=${value}&limit=${limit}`);
-  };
+  //   router.replace({
+  //     pathname: "/users",
+  //     query: { ...query, name: e.target.value },
+  //   });
+  // };
+
+  // const handleSkipChange = (e) => {
+  //   setQuery({ ...query, skip: e.target.value });
+
+  //   router.replace({
+  //     pathname: "/users",
+  //     query: { ...query, skip: e.target.value },
+  //   });
+  // };
 
   const handleLimitChange = (e) => {
-    const value = e.target.value;
-    setLimit(value);
+    setQuery({ ...query, limit: e.target.value });
 
-    router.push(`/users/search?name=${query}&skip=${skip}&limit=${value}`);
+    router.replace({
+      pathname: "/users",
+      query: { ...query, limit: e.target.value },
+    });
   };
 
   return (
     <div className={styles.home}>
       <input
         type="text"
-        value={query}
-        onChange={handleInputChange}
+        value={query.name}
+        onChange={(e) => handleQueryChange("name", e.target.value)}
         placeholder="Type to search..."
       />
 
-      <select value={skip} onChange={handleSkipChange}>
+      <select
+        value={query.skip}
+        onChange={(e) => handleQueryChange("skip", e.target.value)}
+      >
         <option value={0}>Skip 0</option>
         <option value={5}>Skip 5</option>
       </select>
 
-      <select value={limit} onChange={handleLimitChange}>
+      <select value={query.limit} onChange={handleLimitChange}>
         <option value={5}>Limit 5</option>
         <option value={10}>Limit 10</option>
       </select>
