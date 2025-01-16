@@ -24,24 +24,6 @@ const Home = () => {
     });
   };
 
-  // const handleInputChange = (e) => {
-  //   setQuery({ ...query, name: e.target.value });
-
-  //   router.replace({
-  //     pathname: "/users",
-  //     query: { ...query, name: e.target.value },
-  //   });
-  // };
-
-  // const handleSkipChange = (e) => {
-  //   setQuery({ ...query, skip: e.target.value });
-
-  //   router.replace({
-  //     pathname: "/users",
-  //     query: { ...query, skip: e.target.value },
-  //   });
-  // };
-
   const handleLimitChange = (e) => {
     setQuery({ ...query, limit: e.target.value });
 
