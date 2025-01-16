@@ -12,7 +12,7 @@ export default function Home() {
       <main className={styles.main}>
         <h1>Next.js Dynamic Routing</h1>
 
-        <Link href="/users/search?name=&skip=0&limit=5">
+        <Link href="/users">
           <button>User List</button>
         </Link>
       </main>
