@@ -4,6 +4,7 @@ import { useState } from "react";
 
 const Home = () => {
   const router = useRouter();
+  const [timer, setTimer] = useState(null);
 
   const [query, setQuery] = useState({
     name: "",
@@ -12,16 +13,23 @@ const Home = () => {
   });
 
   const handleQueryChange = (key, value) => {
-    setQuery((prev) => {
-      const query = { ...prev, [key]: value };
+    const updatedQuery = { ...query, [key]: value };
+    setQuery(updatedQuery);
 
+    // Clear any previously set timeout to prevent making unnecessary API calls
+    if (timer) {
+      clearTimeout(timer);
+    }
+
+    // Set a new timeout to delay the API call for 500ms
+    const newTimer = setTimeout(() => {
       router.replace({
         pathname: "/users",
-        query: query,
+        query: updatedQuery,
       });
+    }, 500);
 
-      return query;
-    });
+    setTimer(newTimer);
   };
 
   const handleLimitChange = (e) => {
